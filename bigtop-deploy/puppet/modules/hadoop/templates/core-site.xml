@@ -87,4 +87,9 @@
   </property>
 <% end %>
 
+  <property>
+    <name>fs.trash.interval</name>
+    <value>180</value>
+  </property>
+
 </configuration>
