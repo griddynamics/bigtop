@@ -36,7 +36,7 @@
 
     <property>
         <name>oozie.service.SchemaService.wf.ext.schemas</name>
-        <value>shell-action-0.1.xsd,shell-action-0.2.xsd,email-action-0.1.xsd,hive-action-0.2.xsd,hive-action-0.3.xsd,sqoop-action-0.2.xsd,sqoop-action-0.3.xsd,ssh-action-0.1.xsd,distcp-action-0.1.xsd</value>
+        <value>shell-action-0.1.xsd,shell-action-0.3.xsd,email-action-0.1.xsd,hive-action-0.2.xsd,hive-action-0.3.xsd,hive-action-0.4.xsd,sqoop-action-0.2.xsd,sqoop-action-0.3.xsd,ssh-action-0.1.xsd,distcp-action-0.1.xsd,distcp-action-0.2.xsd,oozie-sla-0.1.xsd</value>
     </property>
 
     <property>
@@ -66,7 +66,7 @@
 
     <property>
         <name>oozie.service.PurgeService.older.than</name>
-        <value>30</value>
+        <value>365</value>
         <description>
             Jobs older than this value, in days, will be purged by the PurgeService.
         </description>
@@ -74,7 +74,7 @@
 
     <property>
         <name>oozie.service.PurgeService.purge.interval</name>
-        <value>3600</value>
+        <value>10368000</value>
         <description>
             Interval at which the purge service will run, in seconds.
         </description>
@@ -87,8 +87,13 @@
     </property>
 
     <property>
+        <name>oozie.service.CallableQueueService.delayed.queue.size</name>
+        <value>10000</value>
+    </property>
+
+    <property>
         <name>oozie.service.CallableQueueService.threads</name>
-        <value>10</value>
+        <value>300</value>
         <description>Number of threads used for executing callables</description>
     </property>
 
@@ -105,12 +110,22 @@
     </property>
 
     <property>
+        <name>oozie.service.ELService.latest-el.use-current-time</name>
+        <value>true</value>
+    </property>
+
+    <property>
 		<name>oozie.service.coord.normal.default.timeout
 		</name>
-		<value>120</value>
+		<value>20</value>
 		<description>Default timeout for a coordinator action input check (in minutes) for normal job.
             -1 means infinite timeout</description>
 	</property>
+
+    <property>
+        <name>oozie.service.CoordMaterializeTriggerService.lookup.interval</name>
+        <value>60</value>
+    </property> 
 
     <property>
         <name>oozie.db.schema.name</name>
@@ -168,7 +183,7 @@
 
     <property>
         <name>oozie.service.JPAService.pool.max.active.conn</name>
-        <value>10</value>
+        <value>150</value>
         <description>
              Max number of connections.
         </description>
@@ -366,4 +381,34 @@
             in the property name.
         </description>
     </property>
+
+    <property>
+        <name>oozie.service.StatusTransitService.backward.support.for.states.without.error</name>
+        <value>false</value>
+    </property>
+    <property>
+        <name>oozie.service.SchedulerService.threads</name>
+        <value>16</value>
+    </property>
+    <property>
+        <name>oozie.service.WorkflowAppService.WorkflowDefinitionMaxLength</name>
+        <value>150000</value>
+    </property>
+    <property>
+        <name>oozie.service.CallableQueueService.callable.concurrency</name>
+        <value>220</value>
+    </property>
+    <property>
+        <name>oozie.service.EventHandlerService.worker.interval</name>
+        <value>30</value>
+    </property>
+    <property>
+        <name>oozie.service.EventHandlerService.worker.threads</name>
+        <value>6</value>
+    </property>
+    <property>
+        <name>oozie.service.coord.default.throttle</name>
+        <value>50</value>
+    </property>
+
 </configuration>
