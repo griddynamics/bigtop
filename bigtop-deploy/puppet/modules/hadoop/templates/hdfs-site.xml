@@ -16,7 +16,7 @@
 <!-- See the License for the specific language governing permissions and      -->
 <!-- limitations under the License.                                           -->
 
-<% namenode_hosts = Array(hadoop_namenode_host) -%>
+<% namenode_hosts = Array(@hadoop_namenode_host) -%>
 <configuration>
 
 <% if @ha != "disabled" -%>
@@ -48,7 +48,7 @@
 <%   namenode_hosts.each_with_index do |host,idx| -%>
   <property>
     <name>dfs.namenode.rpc-address.<%= nameservice_id %>.nn<%= idx+1 %></name>
-    <value><%= host %>:<%= hadoop_namenode_port %></value>
+    <value><%= host %>:<%= @hadoop_namenode_port %></value>
   </property>
  
   <property>
@@ -87,7 +87,7 @@
   </property>
 
 <%   end -%>
-<% elsif hadoop_security_authentication == "kerberos" -%>
+<% elsif @hadoop_security_authentication == "kerberos" -%>
   <property>
     <name>dfs.block.access.token.enable</name>
     <value>true</value>
@@ -180,7 +180,7 @@
   <!-- name node -->
   <property>
     <name>dfs.data.dir</name>
-    <value><%= hdfs_data_dirs.join(",") %></value>
+    <value><%= @hdfs_data_dirs.join(",") %></value>
   </property>
 
 <% if has_variable?("hdfs_support_append") %>
@@ -204,7 +204,7 @@
  
   <property>
     <name>dfs.name.dir</name>
-    <value><%= namenode_data_dirs.join(",") %></value>
+    <value><%= @namenode_data_dirs.join(",") %></value>
   </property>
 
   <property>
@@ -217,7 +217,7 @@
 <% if has_variable?("hadoop_dfs_namenode_plugins") -%>
   <property>
     <name>dfs.namenode.plugins</name>
-    <value><%= hadoop_dfs_namenode_plugins %></value>
+    <value><%= @hadoop_dfs_namenode_plugins %></value>
     <description>Comma-separated list of namenode plug-ins to be activated.
     </description>
   </property>
@@ -226,7 +226,7 @@
 <% if has_variable?("hadoop_dfs_datanode_plugins") -%>
   <property>
     <name>dfs.datanode.plugins</name>
-    <value><%= hadoop_dfs_datanode_plugins %></value>
+    <value><%= @hadoop_dfs_datanode_plugins %></value>
     <description>Comma-separated list of datanode plug-ins to be activated.
     </description>
   </property>
@@ -235,7 +235,7 @@
 <% if has_variable?("hadoop_namenode_thrift_port") -%>
   <property>
     <name>dfs.thrift.address</name>
-    <value>0.0.0.0:<%= hadoop_namenode_thrift_port %></value>
+    <value>0.0.0.0:<%= @hadoop_namenode_thrift_port %></value>
   </property>
 
 <% end -%>
@@ -250,14 +250,14 @@
 <% if has_variable?("hadoop_config_dfs_block_size") -%>
   <property>
     <name>dfs.block.size</name>
-    <value><%= hadoop_config_dfs_block_size %></value>
+    <value><%= @hadoop_config_dfs_block_size %></value>
   </property>
 
 <% end -%>
 <% if has_variable?("hadoop_config_namenode_handler_count") -%>
   <property>
     <name>dfs.namenode.handler.count</name>
-    <value><%= hadoop_config_namenode_handler_count %></value>
+    <value><%= @hadoop_config_namenode_handler_count %></value>
   </property>
 
 <% end -%>

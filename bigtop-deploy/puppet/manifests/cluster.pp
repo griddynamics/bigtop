@@ -231,8 +231,8 @@ class hadoop_head_node inherits hadoop_worker_node {
 
   hadoop-sqoop::server { "sqoop server":
   }
-  hadoop-sqoop::client { "sqoop client":
-  }
+  #hadoop-sqoop::client { "sqoop client":
+  #}
 
   hcatalog::server { "hcatalog server":
         kerberos_realm => $kerberos_realm,
