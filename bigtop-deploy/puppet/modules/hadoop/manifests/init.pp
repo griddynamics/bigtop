@@ -196,7 +196,7 @@ class hadoop {
     }
 
     file { "/etc/hadoop-httpfs/conf/httpfs-signature.secret":
-      content => inline_template("<%= secret %>"),
+      content => inline_template("<%= @secret %>"),
       require => [Package["hadoop-httpfs"]],
     }
 
