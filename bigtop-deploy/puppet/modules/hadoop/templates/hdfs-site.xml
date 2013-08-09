@@ -30,29 +30,29 @@
 <%   if has_variable?("zk") -%>
   <property>
     <name>ha.zookeeper.quorum</name>
-    <value><%= zk %></value>
+    <value><%= @zk %></value>
   </property>
 <%   end -%>
 <%   end -%>
 
   <property> 
     <name>dfs.federation.nameservices</name>
-    <value><%= nameservice_id %></value>
+    <value><%= @nameservice_id %></value>
   </property>
 
   <property>
-    <name>dfs.ha.namenodes.<%= nameservice_id %></name>
+    <name>dfs.ha.namenodes.<%= @nameservice_id %></name>
     <value><%= (1..namenode_hosts.length).map { |n| "nn#{n}" }.join(",") %></value>
   </property>
 
 <%   namenode_hosts.each_with_index do |host,idx| -%>
   <property>
-    <name>dfs.namenode.rpc-address.<%= nameservice_id %>.nn<%= idx+1 %></name>
+    <name>dfs.namenode.rpc-address.<%= @nameservice_id %>.nn<%= idx+1 %></name>
     <value><%= host %>:<%= @hadoop_namenode_port %></value>
   </property>
  
   <property>
-    <name>dfs.namenode.http-address.<%= nameservice_id %>.nn<%= idx+1 %></name>
+    <name>dfs.namenode.http-address.<%= @nameservice_id %>.nn<%= idx+1 %></name>
     <value><%= host %>:50070</value>
   </property>
 
@@ -60,24 +60,24 @@
 <%   if has_variable?("shared_edits_dir") -%>
   <property>
     <name>dfs.namenode.shared.edits.dir</name>
-    <value><%= shared_edits_dir %></value>
+    <value><%= @shared_edits_dir %></value>
   </property>
 
 <%   end -%>
   <property>
-    <name>dfs.client.failover.proxy.provider.<%= nameservice_id %></name>
+    <name>dfs.client.failover.proxy.provider.<%= @nameservice_id %></name>
     <value>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
   </property>
 
 <%   if has_variable?("sshfence_privkey") -%>
   <property>
     <name>dfs.ha.fencing.methods</name>
-    <value>sshfence(<%= sshfence_user %>)</value>
+    <value>sshfence(<%= @sshfence_user %>)</value>
   </property>
 
   <property>
     <name>dfs.ha.fencing.ssh.private-key-files</name>
-    <value><%= sshfence_keypath %></value>
+    <value><%= @sshfence_keypath %></value>
   </property>
 
 <%   else -%>
@@ -108,11 +108,11 @@
   </property>
   <property>
     <name>dfs.namenode.kerberos.principal</name>
-    <value>hdfs/_HOST@<%= kerberos_realm %></value>
+    <value>hdfs/_HOST@<%= @kerberos_realm %></value>
   </property>
   <property>
     <name>dfs.namenode.kerberos.https.principal</name>
-    <value>host/_HOST@<%= kerberos_realm %></value>
+    <value>host/_HOST@<%= @kerberos_realm %></value>
   </property>
   <property>
     <name>dfs.web.authentication.kerberos.keytab</name>
@@ -120,7 +120,7 @@
   </property>
   <property>
     <name>dfs.web.authentication.kerberos.principal</name>
-    <value>HTTP/_HOST@<%= kerberos_realm %></value>
+    <value>HTTP/_HOST@<%= @kerberos_realm %></value>
   </property>
 
   
@@ -143,11 +143,11 @@
   </property>
   <property>
     <name>dfs.secondary.namenode.kerberos.principal</name>
-    <value>hdfs/_HOST@<%= kerberos_realm %></value>
+    <value>hdfs/_HOST@<%= @kerberos_realm %></value>
   </property>
   <property>
     <name>dfs.secondary.namenode.kerberos.https.principal</name>
-    <value>host/_HOST@<%= kerberos_realm %></value>
+    <value>host/_HOST@<%= @kerberos_realm %></value>
   </property>
   
   <!-- DataNode security config -->
@@ -169,11 +169,11 @@
   </property>
   <property>
     <name>dfs.datanode.kerberos.principal</name>
-    <value>hdfs/_HOST@<%= kerberos_realm %></value>
+    <value>hdfs/_HOST@<%= @kerberos_realm %></value>
   </property>
   <property>
     <name>dfs.datanode.kerberos.https.principal</name>
-    <value>host/_HOST@<%= kerberos_realm %></value>
+    <value>host/_HOST@<%= @kerberos_realm %></value>
   </property>
 
 <% end -%>
@@ -186,7 +186,7 @@
 <% if has_variable?("hdfs_support_append") %>
   <property>
     <name>dfs.support.append</name>
-    <value><%= hdfs_support_append %></value>
+    <value><%= @hdfs_support_append %></value>
   </property>
 <% end %>
 
@@ -198,7 +198,7 @@
 
   <property>
     <name>dfs.block.local-path-access.user</name>
-    <value><%= hdfs_shortcut_reader_user %></value>
+    <value><%= @hdfs_shortcut_reader_user %></value>
   </property>
 <% end %>
  

@@ -22,7 +22,7 @@
   <!-- HistoryServer security configs -->
   <property>
     <name>mapreduce.jobhistory.principal</name>
-    <value>mapred/_HOST@<%= kerberos_realm %></value>
+    <value>mapred/_HOST@<%= @kerberos_realm %></value>
   </property>
   <property>
     <name>mapreduce.jobhistory.keytab</name>
@@ -32,11 +32,11 @@
   <!-- JobTracker security configs -->
   <property>
     <name>mapreduce.jobtracker.kerberos.principal</name>
-    <value>mapred/_HOST@<%= kerberos_realm %></value>
+    <value>mapred/_HOST@<%= @kerberos_realm %></value>
   </property>
   <property>
     <name>mapreduce.jobtracker.kerberos.https.principal</name>
-    <value>host/_HOST@<%= kerberos_realm %></value>
+    <value>host/_HOST@<%= @kerberos_realm %></value>
   </property>
   <property>
     <name>mapreduce.jobtracker.keytab.file</name>
@@ -46,11 +46,11 @@
   <!-- TaskTracker security configs -->
   <property>
     <name>mapreduce.tasktracker.kerberos.principal</name>
-    <value>mapred/_HOST@<%= kerberos_realm %></value>
+    <value>mapred/_HOST@<%= @kerberos_realm %></value>
   </property>
   <property>
     <name>mapreduce.tasktracker.kerberos.https.principal</name>
-    <value>host/_HOST@<%= kerberos_realm %></value>
+    <value>host/_HOST@<%= @kerberos_realm %></value>
   </property>
   <property>
     <name>mapreduce.tasktracker.keytab.file</name>
