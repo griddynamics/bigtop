@@ -16,7 +16,7 @@
 <!-- See the License for the specific language governing permissions and      -->
 <!-- limitations under the License.                                           -->
 
-<% namenode_hosts = Array(hadoop_namenode_host) -%>
+<% namenode_hosts = Array(@hadoop_namenode_host) -%>
 <configuration>
   <property>
     <name>httpfs.hadoop.config.dir</name>
@@ -24,7 +24,7 @@
   </property>
 
 <% if has_variable?("hadoop_core_proxyusers") -%>
-<% hadoop_core_proxyusers.sort.each do |superuser, data| -%>
+<% @hadoop_core_proxyusers.sort.each do |superuser, data| -%>
   <property>
     <name>httpfs.proxyuser.<%= superuser %>.hosts</name>
     <value><%= data['hosts'] %></value>
@@ -36,7 +36,7 @@
 <% end -%>
 <% end -%>
 
-<% if hadoop_security_authentication == "kerberos" -%>
+<% if @hadoop_security_authentication == "kerberos" -%>
   <property>
     <name>httpfs.authentication.type</name>
     <value>kerberos</value>
