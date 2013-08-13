@@ -23,7 +23,7 @@
     <value>/etc/hadoop/conf</value>
   </property>
 
-<% if has_variable?("hadoop_core_proxyusers") -%>
+<% if @hadoop_core_proxyusers -%>
 <% @hadoop_core_proxyusers.sort.each do |superuser, data| -%>
   <property>
     <name>httpfs.proxyuser.<%= superuser %>.hosts</name>

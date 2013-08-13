@@ -27,7 +27,7 @@
     <name>dfs.ha.automatic-failover.enabled</name>
     <value>true</value>
   </property>
-<%   if has_variable?("zk") -%>
+<%   if @zk -%>
   <property>
     <name>ha.zookeeper.quorum</name>
     <value><%= @zk %></value>
@@ -57,7 +57,7 @@
   </property>
 
 <%   end -%>
-<%   if has_variable?("shared_edits_dir") -%>
+<%   if @shared_edits_dir -%>
   <property>
     <name>dfs.namenode.shared.edits.dir</name>
     <value><%= @shared_edits_dir %></value>
@@ -69,7 +69,7 @@
     <value>org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider</value>
   </property>
 
-<%   if has_variable?("sshfence_privkey") -%>
+<%   if @sshfence_privkey -%>
   <property>
     <name>dfs.ha.fencing.methods</name>
     <value>sshfence(<%= @sshfence_user %>)</value>
@@ -183,14 +183,14 @@
     <value><%= @hdfs_data_dirs.join(",") %></value>
   </property>
 
-<% if has_variable?("hdfs_support_append") %>
+<% if @hdfs_support_append %>
   <property>
     <name>dfs.support.append</name>
     <value><%= @hdfs_support_append %></value>
   </property>
 <% end %>
 
-<% if has_variable?("hdfs_shortcut_reader_user") %>
+<% if @hdfs_shortcut_reader_user %>
   <property>
     <name>dfs.client.read.shortcircuit</name>
     <value>true</value>
@@ -214,7 +214,7 @@
   </property>
 
   <!-- Enable Hue plugins -->
-<% if has_variable?("hadoop_dfs_namenode_plugins") -%>
+<% if @hadoop_dfs_namenode_plugins -%>
   <property>
     <name>dfs.namenode.plugins</name>
     <value><%= @hadoop_dfs_namenode_plugins %></value>
@@ -223,7 +223,7 @@
   </property>
 
 <% end -%>
-<% if has_variable?("hadoop_dfs_datanode_plugins") -%>
+<% if @hadoop_dfs_datanode_plugins -%>
   <property>
     <name>dfs.datanode.plugins</name>
     <value><%= @hadoop_dfs_datanode_plugins %></value>
@@ -232,7 +232,7 @@
   </property>
 
 <% end -%>
-<% if has_variable?("hadoop_namenode_thrift_port") -%>
+<% if @hadoop_namenode_thrift_port -%>
   <property>
     <name>dfs.thrift.address</name>
     <value>0.0.0.0:<%= @hadoop_namenode_thrift_port %></value>
@@ -247,14 +247,14 @@
   </property>
 
   <!-- Configurations for large cluster -->
-<% if has_variable?("hadoop_config_dfs_block_size") -%>
+<% if @hadoop_config_dfs_block_size -%>
   <property>
     <name>dfs.block.size</name>
     <value><%= @hadoop_config_dfs_block_size %></value>
   </property>
 
 <% end -%>
-<% if has_variable?("hadoop_config_namenode_handler_count") -%>
+<% if @hadoop_config_namenode_handler_count -%>
   <property>
     <name>dfs.namenode.handler.count</name>
     <value><%= @hadoop_config_namenode_handler_count %></value>
