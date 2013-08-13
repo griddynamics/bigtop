@@ -41,7 +41,7 @@ class hadoop-oozie {
     exec { "Oozie DB init":
       command => "/etc/init.d/oozie init",
       cwd     => "/var/lib/oozie",
-      creates => "/var/lib/oozie/derby.log",
+      creates => "/var/log/oozie/derby.log",
       require => Package["oozie"],
     }
 
