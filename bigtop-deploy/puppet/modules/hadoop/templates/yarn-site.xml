@@ -125,4 +125,17 @@
         $HADOOP_YARN_HOME/*,$HADOOP_YARN_HOME/lib/*
      </value>
   </property>
+
+  <property>
+    <name>yarn.nodemanager.resource.memory-mb</name>
+    <value>16384</value>
+  </property>
+  <property>
+    <name>yarn.nodemanager.pmem-check-enabled</name>
+    <value>false</value>
+  </property>
+  <property>
+    <name>yarn.nodemanager.vmem-check-enabled</name>
+    <value>false</value>
+  </property>
 </configuration>
