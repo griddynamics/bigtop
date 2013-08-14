@@ -101,6 +101,12 @@ class hadoop {
         content => template('hadoop/hdfs-site.xml'),
         require => [Package["hadoop"]],
     }
+
+    file {
+      "/etc/hadoop/conf/capacity-scheduler.xml":
+        content => template('hadoop/capacity-scheduler.xml'),
+        require => [Package["hadoop"]],
+    }
   }
 
   class common-mapred-app inherits common-hdfs {
