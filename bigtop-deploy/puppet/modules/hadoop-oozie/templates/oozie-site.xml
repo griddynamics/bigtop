@@ -148,7 +148,7 @@
 
     <property>
         <name>oozie.service.JPAService.jdbc.driver</name>
-        <value>org.apache.derby.jdbc.EmbeddedDriver</value>
+        <value>org.postgresql.Driver</value>
         <description>
             JDBC driver class.
         </description>
@@ -156,7 +156,7 @@
 
     <property>
         <name>oozie.service.JPAService.jdbc.url</name>
-        <value>jdbc:derby:${oozie.data.dir}/${oozie.db.schema.name}-db;create=true</value>
+        <value>jdbc:postgresql://localhost:5432/oozie</value>
         <description>
             JDBC URL.
         </description>
@@ -164,7 +164,7 @@
 
     <property>
         <name>oozie.service.JPAService.jdbc.username</name>
-        <value>sa</value>
+        <value>oozie</value>
         <description>
             DB user name.
         </description>
@@ -172,7 +172,7 @@
 
     <property>
         <name>oozie.service.JPAService.jdbc.password</name>
-        <value> </value>
+        <value>oozie</value>
         <description>
             DB user password.
 

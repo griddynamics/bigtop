@@ -29,6 +29,16 @@ class hadoop-oozie {
       }
     }
 
+    class { 'postgresql':
+      run_initdb => true
+    }
+    class { 'postgresql::server':
+    }
+    postgresql::db { 'oozie':
+       user => 'oozie',
+       password => postgresql_password('oozie', 'oozie')
+    }
+
     package { "oozie":
       ensure => latest,
     }
@@ -41,7 +51,6 @@ class hadoop-oozie {
     exec { "Oozie DB init":
       command => "/etc/init.d/oozie init",
       cwd     => "/var/lib/oozie",
-      creates => "/var/log/oozie/derby.log",
       require => Package["oozie"],
     }
 
